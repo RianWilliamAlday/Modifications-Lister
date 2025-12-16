@@ -1,19 +1,39 @@
-import { useState } from "react";
-
-const ListSection =  ({mods}) =>{
+const ListSection =  ({mods, removeMod}) =>{
 
     return(
         <>
-        <section className="bg-white m-10 xl:ml-50 xl:mr-50 shadow-md rounded-4xl p-6 font-serif">
+         <section className="bg-white m-10 md:ml-30 md:mr-30 xl:ml-50 xl:mr-50 shadow-md rounded-4xl p-6 font-serif">
             <h2 className="text-[25px] font-bold">Mods List</h2>
-             <div id="ModsList">
-                <p className="text-center text-[20] italic text-gray-700" id="emptyMessage">No mods listed yet.</p></div>
 
-        <ul>
-            {mods && mods.map((mod, index) =>(
-                <li key={index}>{mod.ModName}, {mod.ModLink}</li>
-        ))}
-        </ul>
+            {mods.length === 0 && (
+                <p className="text-center text-[20px] italic text-gray-700">
+                    No mods listed yet.
+                </p>
+            )}
+
+            <div className="mt-4 space-y-4">
+                {mods.map((mod, index) => (
+                    <div
+                        key={index}
+                        className="bg-gray-200 border p-4 rounded-xl transition transform hover:scale-[1.03] hover:shadow-lg">
+                        <p className="text-lg font-semibold">
+                            {mod.ModName}
+                            <span className="text-gray-600"> (for {mod.Game})</span>
+                        </p>
+
+                        <div className="flex gap-3 mt-3">
+                            <a
+                                href={mod.ModLink}
+                                target="_blank"
+                                className="px-3 py-2 rounded-md bg-blue-600 text-white transition hover:bg-blue-700 hover:scale-105">Download</a>
+
+                            <button
+                                onClick={() => removeMod(index)}
+                                className="px-3 py-2 rounded-md bg-red-600 text-white transition hover:bg-red-700 hover:scale-105">Delete</button>
+                        </div>
+                    </div>
+                ))}
+            </div>
         </section>
 
         
