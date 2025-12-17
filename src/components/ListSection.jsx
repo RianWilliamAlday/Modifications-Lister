@@ -2,7 +2,7 @@ const ListSection =  ({mods, removeMod}) =>{
 
     return(
         <>
-         <section className="bg-white m-10 md:ml-30 md:mr-30 xl:ml-50 xl:mr-50 shadow-md rounded-4xl p-6 font-serif">
+         <section className="bg-white m-3 mb-5 mt-5 md:ml-30 md:mr-30 md:mt-8 md:mb-8 xl:ml-50 xl:mr-50 xl:mt-8 xl:mb- shadow-md rounded-4xl p-6 font-serif">
             <h2 className="text-[25px] font-bold">Mods List</h2>
 
             {mods.length === 0 && (

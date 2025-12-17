@@ -39,7 +39,7 @@ const ModSection =  ({ savedGameName, showPopup }) =>{
 
     return(
         <>
-             <section className="bg-white m-10 md:ml-30 md:mr-30 xl:ml-50 xl:mr-50 shadow-md rounded-4xl p-6 font-serif">
+             <section className="bg-white m-3 mb-5 mt-5 md:ml-30 md:mr-30 md:mt-8 xl:ml-50 xl:mr-50 xl:mt-8 shadow-md rounded-4xl p-6 font-serif">
                 <h3 className="text-[22px] font-bold">List your Mods</h3>
                 <p className="text-[18px]">Enter the name of the mod and the link.</p>
                     <form onSubmit={handleSubmit} id="ModForm">
