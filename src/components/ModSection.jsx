@@ -1,15 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ListSection from "../components/ListSection.jsx"
 
 const ModSection =  ({ savedGameName, showPopup }) =>{
     const [ModName, setModName] = useState('');
     const [ModLink, setModLink] = useState('');
-    const [ListOfMods, setListOfMods] = useState([]);
+
+    const [ListOfMods, setListOfMods] = useState(() => {
+        const stored = localStorage.getItem("mods");
+        return stored ? JSON.parse(stored) : [];
+    });
+
+
+    useEffect(() => {
+        localStorage.setItem("mods", JSON.stringify(ListOfMods));
+    }, [ListOfMods]);
 
     const handleDeleteMod = (index) => {
     setListOfMods(prev => prev.filter((_, i) => i !== index));
     };
- 
 
     const handleSubmit = (e) =>{
         e.preventDefault();
@@ -41,7 +49,7 @@ const ModSection =  ({ savedGameName, showPopup }) =>{
         <>
              <section className="bg-white m-3 mb-5 mt-5 md:ml-30 md:mr-30 md:mt-8 xl:ml-50 xl:mr-50 xl:mt-8 shadow-md rounded-4xl p-6 font-serif">
                 <h3 className="text-[22px] font-bold">List your Mods</h3>
-                <p className="text-[18px]">Enter the name of the mod and the link.</p>
+                <p className="text:[14px] md:text-[16px] xl:text-[18px]">Enter the name of the mod and the link.</p>
                     <form onSubmit={handleSubmit} id="ModForm">
                         <label htmlFor="ModName" className="text-[18px] font-bold">Modification Name: </label>
                         <input 

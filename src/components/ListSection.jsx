@@ -6,7 +6,7 @@ const ListSection =  ({mods, removeMod}) =>{
             <h2 className="text-[25px] font-bold">Mods List</h2>
 
             {mods.length === 0 && (
-                <p className="text-center text-[20px] italic text-gray-700">
+                <p className="text-center text:[14px] md:text-[16px] xl:text-[20px] italic text-gray-700">
                     No mods listed yet.
                 </p>
             )}
