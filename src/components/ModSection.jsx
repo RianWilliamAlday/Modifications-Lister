@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import ListSection from "../components/ListSection.jsx"
+import {Gamepad2, Send } from "lucide-react";
 
 const ModSection =  ({ savedGameName, showPopup }) =>{
     const [ModName, setModName] = useState('');
@@ -48,7 +49,10 @@ const ModSection =  ({ savedGameName, showPopup }) =>{
     return(
         <>
              <section className="bg-white m-3 mb-5 mt-5 md:ml-30 md:mr-30 md:mt-8 xl:ml-50 xl:mr-50 xl:mt-8 shadow-md rounded-4xl p-6 font-serif">
+              <div className="flex items-center gap-2">
+                <Gamepad2 className="text-indigo-600" size={28} />
                 <h3 className="text-[22px] font-bold">List your Mods</h3>
+              </div>
                 <p className="text:[14px] md:text-[16px] xl:text-[18px]">Enter the name of the mod and the link.</p>
                     <form onSubmit={handleSubmit} id="ModForm">
                         <label htmlFor="ModName" className="text-[18px] font-bold">Modification Name: </label>
@@ -69,7 +73,10 @@ const ModSection =  ({ savedGameName, showPopup }) =>{
                             onChange={(e) => setModLink(e.target.value)}
                             className="m-[10px] w-full border rounded-xl px-3 py-2"
                         />
-                        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors duration-300">Submit</button>
+                        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors duration-300 flex items-center gap-2">
+                            <Send  className="text-white" size={20} />
+                            Submit
+                        </button>
                     </form>
                 </section>
 

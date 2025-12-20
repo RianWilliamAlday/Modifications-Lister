@@ -31,7 +31,7 @@ function App() {
 
   return (
     <>
-      <main className="bg-gray-300 min-h-screen">
+      <main className="bg-gray-200 min-h-screen">
       <Header webname="Modifications Lister"/>
       <GameSection 
           savedGameName={savedGameName}
@@ -51,7 +51,6 @@ function App() {
           onClose={closePopup}
       />
       <Footer />
-
       </main>
     </>
   )
