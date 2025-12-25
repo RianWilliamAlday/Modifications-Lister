@@ -24,7 +24,7 @@ const ListSection =  ({mods, removeMod}) =>{
                     <div
                         key={index}
                         className="bg-gray-200 border p-4 rounded-xl transition transform hover:scale-[1.03] hover:shadow-lg">
-                        <p className="text-lg font-semibold flex items-center gap-2">
+                        <p className="text-[15px] xl:text-lg font-semibold flex items-center gap-2">
                             <Package size={28} className="text-indigo-600" />
                             {mod.ModName}
                             <span className="text-gray-600"> (for {mod.Game})</span>
