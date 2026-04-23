@@ -28,7 +28,7 @@ const ListSection =  ({mods, removeMod}) =>{
                         <img
                         src={mod.background_image}
                         alt={mod.Game}
-                        className="w-16 h-16 md:w-20 md:h-20 object-cover rounded-lg flex-shrink-0 shadow-sm transition hover:scale-105"
+                        className="hidden md:block w-16 h-16 md:w-20 md:h-20 object-cover rounded-lg flex-shrink-0 shadow-sm transition hover:scale-105"
                         />
                         ) : (
                             <div className="w-16 h-16 md:w-20 md:h-20 bg-gray-300 rounded-lg flex-shrink-0 flex items-center justify-center shadow-sm">

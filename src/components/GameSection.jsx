@@ -93,17 +93,18 @@ const GameSection = ({ setSavedGameName, showNotification, showPopup }) => {
                 <p className="text-[14px] md:text-[16px] xl:text-[18px]">For which game is the mod?</p>
                     <form onSubmit={handleSubmit} className="mt-3">
                         <label className="font-bold">Game Name:</label>
+                          <div className="relative w-full mt-2 mb-4">
                             <input
                                 type="text"
                                 value={gameName}
                                 onChange={(e) => setGameName(e.target.value)}
                                 onFocus={() => setIsFocused(true)}
-                                className="m-[10px] w-full border rounded-xl px-3 py-2"
+                                className="w-full border rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                                 placeholder="Search for a game..."
                             />
 
                             {isFocused && showResults && results.length > 0 && (
-                                <ul className="absolute z-10 mt-1 bg-white border rounded-xl shadow-lg max-h-60 overflow-y-auto w-full max-w-md">
+                                <ul className="absolute top-full left-0 z-10 w-full mt-1 bg-white border rounded-xl shadow-lg max-h-60 overflow-y-auto w-full max-w-md">
                                     {results.map((game) => (
                                     <li
                                         key={game.id}
@@ -134,6 +135,7 @@ const GameSection = ({ setSavedGameName, showNotification, showPopup }) => {
                                 ))}
                                 </ul>
                             )}
+                          </div>
 
                         <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors duration-300 flex items-center gap-2">
                             <Send  className="text-white" size={20} />
