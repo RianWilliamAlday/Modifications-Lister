@@ -23,7 +23,7 @@ const ModSection =  ({ savedGameName, showPopup }) =>{
     const handleSubmit = (e) =>{
         e.preventDefault();
 
-         if (!savedGameName) {
+         if (!savedGameName || !savedGameName.name) {
             showPopup("Please set a game first!");
             return;
         }
@@ -35,7 +35,7 @@ const ModSection =  ({ savedGameName, showPopup }) =>{
 
 
         const mods = {
-            ModName, ModLink, Game: savedGameName,
+            ModName, ModLink, Game: savedGameName.name, background_image: savedGameName.image
         }
 
         setListOfMods([...ListOfMods, mods]);

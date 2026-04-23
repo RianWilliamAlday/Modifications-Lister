@@ -23,7 +23,20 @@ const ListSection =  ({mods, removeMod}) =>{
                 {mods.map((mod, index) => (
                     <div
                         key={index}
-                        className="bg-gray-200 border p-4 rounded-xl transition transform hover:scale-[1.03] hover:shadow-lg">
+                        className="bg-gray-200 border p-4 rounded-xl transition transform hover:scale-[1.03] hover:shadow-lg flex items-start gap-4">
+                        {mod.background_image ? (
+                        <img
+                        src={mod.background_image}
+                        alt={mod.Game}
+                        className="w-16 h-16 md:w-20 md:h-20 object-cover rounded-lg flex-shrink-0 shadow-sm transition hover:scale-105"
+                        />
+                        ) : (
+                            <div className="w-16 h-16 md:w-20 md:h-20 bg-gray-300 rounded-lg flex-shrink-0 flex items-center justify-center shadow-sm">
+                                <Package size={24} className="text-gray-500" />
+                            </div>
+                        )}
+
+                    <div className="flex-1">
                         <p className="text-[15px] xl:text-lg font-semibold flex items-center gap-2">
                             <Package size={28} className="hidden md:block lg:block xl:block text-indigo-600" />
                             {mod.ModName}
@@ -47,6 +60,7 @@ const ListSection =  ({mods, removeMod}) =>{
                             </button>
                         </div>
                     </div>
+                </div>
                 ))}
             </div>
         </section>
