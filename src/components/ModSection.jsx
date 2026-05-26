@@ -20,6 +20,65 @@ const ModSection =  ({ savedGameName, showPopup }) =>{
     setListOfMods(prev => prev.filter((_, i) => i !== index));
     };
 
+    useEffect(() => {
+    if (ModLink.length < 10 || !ModLink.startsWith('http')) return;
+
+    if (ModLink.includes('gtainside.com')) {
+        try {
+            const urlParts = ModLink.split('/').filter(Boolean); 
+            const slug = urlParts[urlParts.length - 1];
+
+            let formattedName = slug.replace(/^\d+-/, '').replace(/-/g, ' ');
+
+            formattedName = formattedName.replace(/\b\w/g, char => char.toUpperCase());
+
+
+            setModName(formattedName);
+
+            return;
+        } catch (e) {
+            console.log("Failed to parse URL, falling back to proxy...");
+        }
+    }
+
+    const fetchTitle = async () => {
+        try {
+            const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(ModLink)}`;
+            const response = await fetch(proxyUrl);
+                
+            if (!response.ok) throw new Error("Network response was not ok");
+            
+            const data = await response.text();
+
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(htmlText, "text/html");
+            const rawTitle = doc.querySelector("title")?.innerText;
+
+            const match = data.contents.match(/<title>(.*?)<\/title>/i);
+                
+            if (rawTitle) {
+                let cleanTitle = rawTitle  
+                    .replace(/^GTA San Andreas /i, '')
+                    .replace(/ Mod - GTAinside\.com/i, '')
+                    .replace(/ - Nexus Mods.*/i, '')
+                    .replace(/Steam Workshop::/i, '')
+                    .replace(/ - Mod DB.*/i, '')
+                    .trim();
+    
+            setModName(cleanTitle);
+        }
+        } catch (error) {
+            console.log("Could not auto-fetch title, user will need to input manually.", error);
+        }
+    };
+
+        const delaySearch = setTimeout(() => {
+            fetchTitle();
+        }, 1000);
+
+        return () => clearTimeout(delaySearch);
+    }, [ModLink]);
+
     const handleSubmit = (e) =>{
         e.preventDefault();
 
@@ -70,10 +129,16 @@ const ModSection =  ({ savedGameName, showPopup }) =>{
                             id="ModLink" 
                             name="ModLink"
                             value={ModLink}
-                            onChange={(e) => setModLink(e.target.value)}
+                            onChange={(e) => {
+                                    const newLinkValue = e.target.value;
+                                    setModLink(newLinkValue);
+                                    if (newLinkValue.trim() === "") {
+                                        setModName("");
+                                }
+                            }}
                             className="m-[10px] w-full border rounded-xl px-3 py-2"
                         />
-                        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors duration-300 flex items-center gap-2">
+                        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors duration-300 flex items-center gap-2 mt-4">
                             <Send  className="text-white" size={20} />
                             Submit
                         </button>
