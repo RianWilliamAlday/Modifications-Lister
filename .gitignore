@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 
 .env
+.vercel/
+.vscode/
+api/game_summary.js
